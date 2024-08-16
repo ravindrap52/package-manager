@@ -1,13 +1,47 @@
+import { useState } from "react";
+
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import NavItemsAsList from "@/components/NavItemsAsList";
+
 export default function App() {
+  const [toggle, setToggle] = useState(false);
+
+  //function to toggle menu
+  const handleOnClick = (): void => {
+    setToggle(true);
+  };
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
-      <header className="bg-blue-600 text-white p-4">
-        <div className="container mx-auto">
-          <h1 className="text-2xl font-bold">Responsive Header</h1>
-        </div>
-      </header>
-
+      <Header handleOnClick={handleOnClick} />
+      {/* Mobile menu */}
+      {toggle ? (
+        <nav
+          id="mobile-menu"
+          className="fixed inset-0 z-50 bg-blue-600 text-white transform -translate-x-0 transition-transform duration-300 lg:hidden"
+        >
+          <div className="p-4">
+            <button id="menu-close" className="focus:outline-none text-right" onClick={() => setToggle(false)}>
+              <svg
+                className="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+            <NavItemsAsList />
+          </div>
+        </nav>
+      ) : null}
       {/* Main Content */}
       <main className="flex-grow container mx-auto p-4 flex flex-col lg:flex-row gap-4">
         {/* Sidebar */}
@@ -64,11 +98,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-blue-600 text-white p-4">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2024 Responsive Layout. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
