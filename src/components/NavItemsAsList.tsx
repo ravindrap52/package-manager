@@ -1,10 +1,17 @@
-export default function NavItemsAsList() {
-    return (
-        <ul className="mt-8 space-y-6" data-testid="navItemsAsList">
-        <li><a href="#" className="block text-lg hover:text-gray-300">Home</a></li>
-        <li><a href="#" className="block text-lg hover:text-gray-300">About</a></li>
-        <li><a href="#" className="block text-lg hover:text-gray-300">Services</a></li>
-        <li><a href="#" className="block text-lg hover:text-gray-300">Contact Us</a></li>
-    </ul>
-    );
-  }
+import { Link } from "react-router-dom";
+
+import { navItemProps } from "@/lib/types";
+
+export default function NavItemsAsList({ navItems }: navItemProps) {
+  return (
+      <ul className="mt-8 space-y-6" data-testid="navItemsAsList">
+        {navItems.map(({ id, name, path }) => (
+          <li key={id}>
+            <Link to={path} className="text-gray-700">
+              {name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+  );
+}

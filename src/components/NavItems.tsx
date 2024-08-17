@@ -1,18 +1,15 @@
-export default function NavItems() {
+import { Link } from "react-router-dom";
+
+import { navItemProps } from "@/lib/types";
+
+export default function NavItems({ navItems }: navItemProps) {
   return (
-    <nav className="hidden lg:flex space-x-6" data-testid="navItems">
-      <a href="#" className="hover:text-gray-300">
-        Home
-      </a>
-      <a href="#" className="hover:text-gray-300">
-        About
-      </a>
-      <a href="#" className="hover:text-gray-300">
-        Services
-      </a>
-      <a href="#" className="hover:text-gray-300">
-        Contact Us
-      </a>
+    <nav className="hidden md:flex space-x-4" data-testid="navItems">
+      {navItems.map(({ id, name, path }) => (
+        <Link to={path} className="text-gray-700" key={id}>
+          {name}
+        </Link>
+      ))}
     </nav>
   );
 }
