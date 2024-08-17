@@ -6,26 +6,26 @@ import { MemoryRouter } from "react-router-dom";
 
 import "@testing-library/jest-dom";
 
-import NavItemsAsList from "@/components/NavItemsAsList";
+import NavItems from "@/components/NavItems";
 
-import { sidebarNavItems } from "@/lib/navItems";
+import { headerNavItems } from "@/lib/navItems";
 
-describe("NavItemsAsList", () => {
+describe("NavItems", () => {
   it("should render the nav items as list", () => {
     render(
       <MemoryRouter>
-        <NavItemsAsList navItems={sidebarNavItems} />
+        <NavItems navItems={headerNavItems} />
       </MemoryRouter>
     );
   });
   it("should match the list of the items rendered", () => {
     const { getByTestId } = render(
       <MemoryRouter>
-        <NavItemsAsList navItems={sidebarNavItems} />
+        <NavItems navItems={headerNavItems} />
       </MemoryRouter>
     );
-    expect(getByTestId("navItemsAsList").children.length).toBe(
-      sidebarNavItems.length
+    expect(getByTestId("navItems").children.length).toBe(
+        headerNavItems.length
     );
   });
 });
