@@ -1,8 +1,13 @@
 import { useState } from "react";
 
+import { Outlet } from "react-router-dom";
+
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import NavItemsAsList from "@/components/NavItemsAsList";
+
+import { headerNavItems, sidebarNavItems } from "@/lib/navItems";
+
 
 export default function App() {
   const [toggle, setToggle] = useState(false);
@@ -12,93 +17,55 @@ export default function App() {
     setToggle(true);
   };
   return (
-    <div className="flex flex-col min-h-screen">
+    <section className="bg-gray-100 flex flex-col min-h-screen" data-testid="app">
       {/* Header */}
-      <Header handleOnClick={handleOnClick} />
-      {/* Mobile menu */}
+      <Header handleOnClick={handleOnClick}  />
+
+      {/* Mobile Sidebar */}
       {toggle ? (
-        <nav
-          id="mobile-menu"
-          className="fixed inset-0 z-50 bg-blue-600 text-white transform -translate-x-0 transition-transform duration-300 lg:hidden"
+        <aside
+          data-testid="mobileNav"
+          className={`fixed top-0 left-0 w-64 bg-white shadow-md p-4 h-full transform transition-transform md:hidden z-50 ${
+            toggle ? "translate-x-0" : "-translate-x-full"
+          }`}
         >
-          <div className="p-4">
-            <button id="menu-close" className="focus:outline-none text-right" onClick={() => setToggle(false)}>
-              <svg
-                className="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
-            </button>
-            <NavItemsAsList />
-          </div>
-        </nav>
+          <button
+            className="absolute top-4 right-4 text-gray-600 focus:outline-none"
+            onClick={() => setToggle(false)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+          <NavItemsAsList navItems={headerNavItems} />
+        </aside>
       ) : null}
-      {/* Main Content */}
-      <main className="flex-grow container mx-auto p-4 flex flex-col lg:flex-row gap-4">
-        {/* Sidebar */}
-        <aside className="bg-gray-100 p-4 rounded-lg lg:w-1/4">
-          <h2 className="text-xl font-semibold mb-4">Sidebar</h2>
-          <ul className="space-y-2">
-            <li>
-              <a href="#" className="text-blue-600">
-                Link 1
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-blue-600">
-                Link 2
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-blue-600">
-                Link 3
-              </a>
-            </li>
-            <li>
-              <a href="#" className="text-blue-600">
-                Link 4
-              </a>
-            </li>
-          </ul>
+
+      {/* Sidebar */}
+
+      <main className="flex flex-1 flex-col md:flex-row p-4" data-testid="main">
+        <aside className="w-full md:w-1/4 bg-white shadow-md p-4 mb-4 md:mb-0 md:mr-4">
+          <NavItemsAsList navItems={sidebarNavItems} />
         </aside>
 
         {/* Content Area */}
-        <section className="bg-white p-4 rounded-lg shadow-lg flex-grow">
-          <h2 className="text-xl font-semibold mb-4">Main Content</h2>
-
-          {/* Search Bar */}
-          <div className="mb-4">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full lg:w-1/2 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac
-            vestibulum leo. Cras ut dui ut erat dapibus mollis. Vestibulum
-            scelerisque massa a felis pharetra, a elementum tortor luctus.
-          </p>
-          <p>
-            Curabitur in feugiat augue. Nam lacinia suscipit lectus, non
-            facilisis lacus ultricies ut. Quisque venenatis nisl eu augue
-            tincidunt, vel porta odio vestibulum.
-          </p>
+        <section className="flex-1 bg-white shadow-md p-4">
+          <Outlet />
         </section>
       </main>
-
       {/* Footer */}
       <Footer />
-    </div>
+    </section>
   );
 }
