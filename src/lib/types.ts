@@ -9,3 +9,12 @@ export type navItemProps = {
 export type headerProps = {
   handleOnClick: () => void;
 };
+
+interface Package {
+  name: string;
+  stars: number;
+}
+
+export type Packages = {
+  packages: Package[];
+}
