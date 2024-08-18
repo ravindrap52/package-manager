@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "preinstall": "node checkNodeVersion.js",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "test": "vitest watch",
@@ -12,6 +13,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@fontsource/roboto": "^5.0.14",
+    "@mui/icons-material": "^5.16.7",
+    "@mui/material": "^5.16.7",
     "@tanstack/react-query": "^5.51.23",
     "@tanstack/react-query-devtools": "^5.51.23",
     "@testing-library/jest-dom": "^6.4.8",

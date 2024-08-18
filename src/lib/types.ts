@@ -1,3 +1,5 @@
+import { Package } from "@/lib/interface";
+
 export type navItemProps = {
   navItems: {
     name: string;
@@ -10,11 +12,12 @@ export type headerProps = {
   handleOnClick: () => void;
 };
 
-interface Package {
-  name: string;
-  stars: number;
-}
-
 export type Packages = {
   packages: Package[];
+}
+
+export type Order = 'asc' | 'desc';
+
+export type tableBodyProps = {
+  rowData: Package[]
 }
