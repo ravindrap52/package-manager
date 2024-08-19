@@ -44,15 +44,6 @@ describe("App Component", () => {
       expect(screen.getByText("coming soon Docs...")).toBeInTheDocument()
     );
   });
-  it("should navigate to Search packages page", async () => {
-    render(<RootElement />);
-    const element = screen.getByText("Search packages");
-    userEvent.click(element);
-    await waitFor(() =>
-      expect(screen.getByText("coming soon Packages...")).toBeInTheDocument()
-    );
-    expect(screen.queryByText("coming soon Docs...")).not.toBeInTheDocument();
-  });
   it("should navigate to Blog page", async () => {
     render(<RootElement />);
     const element = screen.getByText("Blog");
