@@ -7,7 +7,7 @@ export interface Package {
   repository_url: string;
 }
 // table data
-export interface tableData {
+export interface TableData {
   id: number;
   name: string;
   stars: number;
@@ -16,7 +16,7 @@ export interface tableData {
 
 export interface HeadCell {
   disablePadding: boolean;
-  id: keyof tableData;
+  id: keyof TableData;
   label: string;
   numeric: boolean;
 }
@@ -24,7 +24,7 @@ export interface HeadCell {
 export interface TableHeaderProps {
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof tableData
+    property: keyof TableData
   ) => void;
   order: Order;
   orderBy: string;
