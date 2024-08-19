@@ -68,4 +68,7 @@ describe("App Component", () => {
       screen.queryByText("coming soon Packages...")
     ).not.toBeInTheDocument();
   });
+  it("should render searchPackages", () => {
+    render(<RootElement />);
+  });
 });
