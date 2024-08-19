@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { routesConfig } from "@/routes";
 import DebounceContextProvider from "@/lib/DebounceContextProvider";
+import SearchTable from "@/components/table/SearchTable";
 
 const router = createMemoryRouter(routesConfig);
 const queryClient = new QueryClient();
@@ -16,6 +17,14 @@ const RootElement = () => (
   <QueryClientProvider client={queryClient}>
     <DebounceContextProvider>
       <RouterProvider router={router} />
+    </DebounceContextProvider>
+  </QueryClientProvider>
+);
+
+const SearchTableElement = () => (
+  <QueryClientProvider client={queryClient}>
+    <DebounceContextProvider>
+      <SearchTable />
     </DebounceContextProvider>
   </QueryClientProvider>
 );
@@ -70,5 +79,8 @@ describe("App Component", () => {
   });
   it("should render searchPackages", () => {
     render(<RootElement />);
+    const element = screen.getByText("Search packages");
+    userEvent.click(element);
+    render(<SearchTableElement />);
   });
 });
