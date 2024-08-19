@@ -1,6 +1,5 @@
 import App from "./App";
 
-import Packages from "@/pages/Packages";
 import Docs from "@/pages/Docs";
 import About from "@/pages/About";
 import Blog from "@/pages/Blog";
@@ -10,6 +9,8 @@ import Stats from "@/pages/Stats";
 import Tools from "@/pages/Tools";
 import ErrorPage from "@/pages/ErrorPage";
 
+import HeaderContextProvider from "@/providers/HeaderContextProvider";
+
 export const routesConfig = [
   {
     path: "/",
@@ -17,7 +18,7 @@ export const routesConfig = [
     errorElement: <ErrorPage />,
     children: [
       {
-        element: <Packages />,
+        element: <Home />,
         index: true,
       },
       {
@@ -38,7 +39,11 @@ export const routesConfig = [
       },
       {
         path: "searchPackages",
-        element: <SearchPackages />,
+        element: (
+          <HeaderContextProvider>
+            <SearchPackages />
+          </HeaderContextProvider>
+        ),
       },
       {
         path: "stats",
