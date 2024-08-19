@@ -26,8 +26,7 @@ export const fetchPackages = async (
     const response = await fetch(url);
 
     // taking total records from response header
-    // const records = Object.fromEntries(response.headers.entries()).total;
-    const records = response.headers.get("total") || 5;
+    const records = response.headers.get("total") || -1;
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
