@@ -1,14 +1,14 @@
 import { Package } from "./interface";
 
-function getOwnerName(url: string) {
+export function getOwnerName(url: string) {
     if (!url) return "";
     const parsedUrl = new URL(url);
     const [, userName] = parsedUrl.pathname.split("/");
     return userName;
 }
 
-export function getTableRowData(tableData: Package[]) {
-  return tableData.map(({name, stars, repository_url}, index) => {
+export function getTableRowData(TableData: Package[]) {
+  return TableData.map(({name, stars, repository_url}, index) => {
     return {
         id: index,
         name,

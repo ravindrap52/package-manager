@@ -5,7 +5,7 @@ export const tableHeaderCells: HeadCell[] = [
     {
         id: "name",
         numeric: false,
-        disablePadding: true,
+        disablePadding: false,
         label: "Name",
     },
     {
@@ -18,6 +18,6 @@ export const tableHeaderCells: HeadCell[] = [
         id: "repository_url",
         numeric: false,
         disablePadding: false,
-        label: "Owner"
+        label: "Owner",
     },
 ]
