@@ -6,20 +6,29 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import NavItemsAsList from "@/components/NavItemsAsList";
 
-import { headerNavItems, sidebarNavItems } from "@/lib/navItems";
-
+import { headerNavItems } from "@/lib/navItems";
+import SearchInput from "./components/SearchInput";
 
 export default function App() {
   const [toggle, setToggle] = useState(false);
 
-  //function to toggle menu
-  const handleOnClick = (): void => {
+  //function to show menu
+  const openHamburgerMenu = (): void => {
     setToggle(true);
   };
+
+  //function to close menu
+  const closeHamburgerMenu = (): void => {
+    setToggle(false);
+  };
+
   return (
-    <section className="bg-gray-100 flex flex-col min-h-screen" data-testid="app">
+    <section
+      className="bg-gray-100 flex flex-col min-h-screen"
+      data-testid="app"
+    >
       {/* Header */}
-      <Header handleOnClick={handleOnClick}  />
+      <Header handleOnClick={openHamburgerMenu} />
 
       {/* Mobile Sidebar */}
       {toggle ? (
@@ -48,7 +57,10 @@ export default function App() {
               />
             </svg>
           </button>
-          <NavItemsAsList navItems={headerNavItems} />
+          <NavItemsAsList
+            navItems={headerNavItems}
+            handleOnClick={closeHamburgerMenu}
+          />
         </aside>
       ) : null}
 
@@ -56,7 +68,8 @@ export default function App() {
 
       <main className="flex flex-1 flex-col md:flex-row p-4" data-testid="main">
         <aside className="w-full md:w-1/4 bg-white shadow-md p-4 mb-4 md:mb-0 md:mr-4">
-          <NavItemsAsList navItems={sidebarNavItems} />
+          {/* <NavItemsAsList navItems={sidebarNavItems} /> */}
+          <SearchInput />
         </aside>
 
         {/* Content Area */}
