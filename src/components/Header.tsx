@@ -2,9 +2,9 @@
 import NavItems from "./NavItems";
 
 import { headerNavItems } from "@/lib/navItems";
-import { headerProps } from "@/lib/types";
+import { HeaderProps } from "@/lib/types";
 
-export default function Header({ handleOnClick }: headerProps) {
+export default function Header({ handleOnClick }: HeaderProps) {
   return (
     <header className="bg-white shadow-md p-4 flex justify-between items-center" data-testid="header">
       <div className="md:hidden flex items-center">

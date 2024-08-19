@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-import { navItemProps } from "@/lib/types";
+import { NavItemProps } from "@/lib/types";
 
-export default function NavItems({ navItems }: navItemProps) {
+export default function NavItems({ navItems }: NavItemProps) {
   return (
     <nav className="hidden md:flex space-x-4" data-testid="navItems">
       {navItems.map(({ id, name, path }) => (

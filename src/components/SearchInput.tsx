@@ -7,7 +7,7 @@ import { validateSearchTerm } from "@/lib/ValidateSearchTerm";
 
 export default function SearchInput() {
   const { setDebouncedValue } = useDebounceContext();
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("*");
   const [isSearchTermValid, setIsSearchTermValid] = useState<boolean>(true);
   const debouncedValue = useDebounce(searchTerm, 500);
 
