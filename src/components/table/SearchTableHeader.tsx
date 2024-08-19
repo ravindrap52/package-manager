@@ -1,29 +1,31 @@
-import Box from "@mui/material/Box";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
-import TableSortLabel from "@mui/material/TableSortLabel";
+import { useState } from "react";
+
+import {
+  Box,
+  TableHead,
+  TableCell,
+  TableSortLabel,
+  TableRow,
+} from "@mui/material";
 import { visuallyHidden } from "@mui/utils";
 
 import { tableHeaderCells } from "@/lib/tableHeaderCells";
 import { TableData } from "@/lib/interface";
 import { Order } from "@/lib/types";
-import { useState } from "react";
 
 export default function SearchTableHeader() {
   const [order, setOrder] = useState<Order>("asc");
   const [orderBy, setOrderBy] = useState<keyof TableData>("stars");
 
-  const handleRequestSort =
-    (property: keyof TableData) => () => {
-      const isAsc = orderBy === property && order === "asc";
-      setOrder(isAsc ? "desc" : "asc");
-      setOrderBy(property);
-    };
+  const handleRequestSort = (property: keyof TableData) => () => {
+    const isAsc = orderBy === property && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
+    setOrderBy(property);
+  };
 
   return (
-    <TableHead>
-      <TableRow>
+    <TableHead data-testid="tableHeader">
+      <TableRow data-testid="tableHeaderRow">
         {tableHeaderCells.map((headCell) => (
           <TableCell
             key={headCell.id}

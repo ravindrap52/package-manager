@@ -34,7 +34,7 @@ export default function SearchTableBody({ rowData, fetching }: TableBodyProps) {
       {fetching ? <p>Loading the results</p> : null}
       {rowData.map((row, index) => {
         return (
-          <TableRow hover tabIndex={-1} key={index} sx={{ cursor: "pointer" }}>
+          <TableRow hover tabIndex={-1} key={index} sx={{ cursor: "pointer" }} data-testid={`rowData_${index}`}>
             <TableCell scope="row">{row.name}</TableCell>
             <TableCell align="right">{row.stars}</TableCell>
             <TableCell padding="normal">{row.repository_url}</TableCell>
