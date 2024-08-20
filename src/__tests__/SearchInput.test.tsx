@@ -50,7 +50,7 @@ describe("SearchInput", () => {
     const errorElement = getByTestId("errorMessage");
     expect(errorElement).toBeInTheDocument();
     expect(getByText("Package name must be alphanumeric and up to 214 characters long.")).toBeInTheDocument();
-    expect(errorElement).toHaveClass("text-red-500 py-4");
+    expect(errorElement).toHaveClass("text-red-500 py-2");
   });
   it("should call the debounce hook and update the value", async () => {
     const { getByTestId } = render(<RootElement />);

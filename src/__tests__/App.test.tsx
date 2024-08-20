@@ -8,6 +8,7 @@ import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import DebounceContextProvider from "@/providers/DebounceContextProvider";
+import HeaderContextProvider from "@/providers/HeaderContextProvider";
 
 import SearchTable from "@/components/table/SearchTable";
 
@@ -18,14 +19,16 @@ const queryClient = new QueryClient();
 
 const RootElement = () => (
   <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+    <RouterProvider router={router} />
   </QueryClientProvider>
 );
 
 const SearchTableElement = () => (
   <QueryClientProvider client={queryClient}>
     <DebounceContextProvider>
-      <SearchTable />
+      <HeaderContextProvider>
+        <SearchTable />
+      </HeaderContextProvider>
     </DebounceContextProvider>
   </QueryClientProvider>
 );
