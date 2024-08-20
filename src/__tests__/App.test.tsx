@@ -2,13 +2,16 @@ import { describe, it, expect } from "vitest";
 
 import { render, waitFor, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
+
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { routesConfig } from "@/routes";
 import DebounceContextProvider from "@/providers/DebounceContextProvider";
+
 import SearchTable from "@/components/table/SearchTable";
+
+import { routesConfig } from "@/routes";
 
 const router = createMemoryRouter(routesConfig);
 const queryClient = new QueryClient();

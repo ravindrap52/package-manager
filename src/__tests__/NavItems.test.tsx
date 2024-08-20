@@ -6,9 +6,9 @@ import { MemoryRouter } from "react-router-dom";
 
 import "@testing-library/jest-dom";
 
-import NavItems from "@/components/NavItems";
-
 import { headerNavItems } from "@/lib/navItems";
+
+import NavItems from "@/components/NavItems";
 
 describe("NavItems", () => {
   it("should render the nav items as list", () => {
