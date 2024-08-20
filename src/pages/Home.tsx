@@ -1,5 +1,13 @@
+import { Box, Typography } from "@mui/material";
+
 export default function Home() {
-    return (
-        <p data-testid="home">coming soon Home...</p>
-    )
+  return (
+    <Box sx={{ p: 2 }}>
+      <Typography variant="h6" gutterBottom>
+        Using this web application, you can search for and fetch packages. By
+        default, the search will use `"*"`, and users can search for specific
+        packages using the search box.
+      </Typography>
+    </Box>
+  );
 }

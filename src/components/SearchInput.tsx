@@ -3,6 +3,7 @@ import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { useDebounce } from "@/hooks/useDebounce";
 
 import { useDebounceContext } from "@/context/debounceContext";
+
 import { validateSearchTerm } from "@/lib/ValidateSearchTerm";
 
 export default function SearchInput() {

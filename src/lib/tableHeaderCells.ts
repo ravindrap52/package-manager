@@ -1,4 +1,4 @@
-import { HeadCell } from "./interface";
+import { HeadCell } from "@/lib/interface";
 
 export const tableHeaderCells: HeadCell[] = [
 

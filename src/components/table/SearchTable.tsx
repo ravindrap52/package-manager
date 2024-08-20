@@ -1,3 +1,5 @@
+import { ChangeEvent, useEffect, useState } from "react";
+
 import {
   Box,
   Table,
@@ -12,13 +14,13 @@ import { usePackageSearch } from "@/hooks/usePackage";
 
 import { useDebounceContext } from "@/context/debounceContext";
 
+import { getTableRowData } from "@/lib/getTableRowData";
+
 import Loading from "@/components/Loading";
 import ErrorPage from "@/components/ErrorPage";
 import SearchTableHeader from "@/components/table/SearchTableHeader";
 
 import SearchTableBody from "./SearchTableBody";
-import { ChangeEvent, useState } from "react";
-import { getTableRowData } from "@/lib/getTableRowData";
 
 export default function SearchTable() {
   const { debouncedValue } = useDebounceContext();
@@ -30,7 +32,12 @@ export default function SearchTable() {
     page + 1,
     rowsPerPage
   );
-
+  
+  // setting page back to 0, whenever the debounce value changed.
+  useEffect(() => {
+    setPage(0);
+  }, [debouncedValue])
+  
   // filtering the data from the dataset
   const rowData = getTableRowData(data?.searchData || []);
 
@@ -44,8 +51,9 @@ export default function SearchTable() {
     return <ErrorPage />;
   }
 
-  // setting nee page
+  // setting new page
   const handleChangePage = (event: unknown, newPage: number) => {
+    console.log("🚀 ~ handleChangePage ~ event:", event)
     setPage(newPage);
   };
   // displaying the selected rows

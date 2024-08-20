@@ -1,7 +1,7 @@
-import NavItems from "./NavItems";
-
 import { headerNavItems } from "@/lib/navItems";
 import { HeaderProps } from "@/lib/types";
+
+import NavItems from "./NavItems";
 
 export default function Header({ handleOnClick }: HeaderProps) {
   return (

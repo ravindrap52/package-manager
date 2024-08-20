@@ -1,4 +1,4 @@
-import { Package } from "./interface";
+import { Package } from "@/lib/interface";
 
 export function getOwnerName(url: string) {
     if (!url) return "";
