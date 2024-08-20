@@ -10,6 +10,7 @@ import Tools from "@/pages/Tools";
 import ErrorPage from "@/pages/ErrorPage";
 
 import HeaderContextProvider from "@/providers/HeaderContextProvider";
+import DebounceContextProvider from "@/providers/DebounceContextProvider";
 
 export const routesConfig = [
   {
@@ -40,9 +41,11 @@ export const routesConfig = [
       {
         path: "searchPackages",
         element: (
-          <HeaderContextProvider>
-            <SearchPackages />
-          </HeaderContextProvider>
+          <DebounceContextProvider>
+            <HeaderContextProvider>
+              <SearchPackages />
+            </HeaderContextProvider>
+          </DebounceContextProvider>
         ),
       },
       {

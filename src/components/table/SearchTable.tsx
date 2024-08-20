@@ -10,7 +10,7 @@ import {
 
 import { usePackageSearch } from "@/hooks/usePackage";
 
-import { useDebounceContext } from "@/lib/debounceContext";
+import { useDebounceContext } from "@/context/debounceContext";
 
 import Loading from "@/components/Loading";
 import ErrorPage from "@/components/ErrorPage";

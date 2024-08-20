@@ -8,7 +8,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { routesConfig } from "./routes";
 
-import DebounceContextProvider from "@/lib/DebounceContextProvider";
 
 import "./index.css";
 
@@ -27,9 +26,7 @@ const routes = createBrowserRouter(routesConfig);
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <DebounceContextProvider>
         <RouterProvider router={routes} />
-      </DebounceContextProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </StrictMode>

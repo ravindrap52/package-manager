@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 
-import { DebounceContext } from "./debounceContext";
+import { DebounceContext } from "../context/debounceContext";
 
 type DebounceContextProviderProps = {
   children: ReactNode;

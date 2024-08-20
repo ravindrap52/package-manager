@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 
 import { describe, it, expect, vi } from "vitest";
 
-import DebounceContextProvider from "@/lib/DebounceContextProvider";
+import DebounceContextProvider from "@/providers/DebounceContextProvider";
 import { validateSearchTerm } from "@/lib/ValidateSearchTerm";
 
 import { useDebounce } from "@/hooks/useDebounce";
