@@ -9,7 +9,7 @@ type DebounceContextProviderProps = {
 export default function DebounceContextProvider({
   children,
 }: DebounceContextProviderProps) {
-  const [debouncedValue, setDebouncedValue] = useState<string>("*");
+  const [debouncedValue, setDebouncedValue] = useState<string>("");
   return (
     <DebounceContext.Provider value={{ debouncedValue, setDebouncedValue }}>
       {children}

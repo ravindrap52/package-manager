@@ -16,8 +16,10 @@ export const fetchPackages = async (
 ): Promise<SearchResults> => {
   try {
     // Encoding the search term correctly
-    const encodedSearchTerm = encodeURIComponent(searchTerm);
-    
+    let encodedSearchTerm = encodeURIComponent(searchTerm);
+    // if not search term then defaulting to *
+    encodedSearchTerm = encodedSearchTerm ? encodedSearchTerm : "*"
+
     // getting api key env file. This is from .env.devlopment file
     const apiKey = import.meta.env.VITE_API_KEY;
 
