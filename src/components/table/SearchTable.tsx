@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState, useMemo } from "react";
 
 import {
   Box,
@@ -20,10 +20,14 @@ import Loading from "@/components/Loading";
 import ErrorPage from "@/components/ErrorPage";
 import SearchTableHeader from "@/components/table/SearchTableHeader";
 
+import { getComparator, stableSort } from "@/lib/sorting";
+
 import SearchTableBody from "./SearchTableBody";
+import { useHeaderContext } from "@/context/headerContext";
 
 export default function SearchTable() {
   const { debouncedValue } = useDebounceContext();
+  const { order, orderBy } = useHeaderContext();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -32,14 +36,24 @@ export default function SearchTable() {
     page + 1,
     rowsPerPage
   );
-  
+
   // setting page back to 0, whenever the debounce value changed.
   useEffect(() => {
     setPage(0);
-  }, [debouncedValue])
-  
+  }, [debouncedValue]);
+
   // filtering the data from the dataset
   const rowData = getTableRowData(data?.searchData || []);
+
+  // sorting the records
+  const visibleRows = useMemo(
+    () =>
+      stableSort(rowData, getComparator(order, orderBy)).slice(
+        0 * rowsPerPage,
+        0 * rowsPerPage + rowsPerPage
+      ),
+    [order, orderBy, rowsPerPage, rowData]
+  );
 
   // showing Loading page while fetching the results
   if (isLoading) {
@@ -53,7 +67,7 @@ export default function SearchTable() {
 
   // setting new page
   const handleChangePage = (event: unknown, newPage: number) => {
-    console.log("🚀 ~ handleChangePage ~ event:", event)
+    console.log("🚀 ~ handleChangePage ~ event:", event);
     setPage(newPage);
   };
   // displaying the selected rows
@@ -74,7 +88,7 @@ export default function SearchTable() {
             size="medium"
           >
             <SearchTableHeader />
-            <SearchTableBody rowData={rowData || []} fetching={isFetching} />
+            <SearchTableBody rowData={visibleRows || []} fetching={isFetching} />
             <TableFooter>
               <TableRow>
                 <TablePagination
