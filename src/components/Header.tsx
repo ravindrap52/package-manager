@@ -1,4 +1,3 @@
-
 import NavItems from "./NavItems";
 
 import { headerNavItems } from "@/lib/navItems";
@@ -6,11 +5,15 @@ import { HeaderProps } from "@/lib/types";
 
 export default function Header({ handleOnClick }: HeaderProps) {
   return (
-    <header className="bg-white shadow-md p-4 flex justify-between items-center" data-testid="header">
-      <div className="md:hidden flex items-center">
+    <header
+      className="bg-teal-500 shadow-md relative z-10 w-full"
+      data-testid="header"
+    >
+      <div className="container mx-auto p-4 flex flex-wrap items-center justify-between">
+        {/* Hamburger Menu for small screens */}
         <button
           id="hamburger-menu"
-          className="text-gray-600 focus:outline-none mr-2"
+          className="block md:hidden text-white focus:outline-none"
           onClick={() => handleOnClick()}
         >
           <svg
@@ -28,17 +31,16 @@ export default function Header({ handleOnClick }: HeaderProps) {
             />
           </svg>
         </button>
-      </div>
+        {/* Logo */}
 
-      {/* Logo */}
+        <div className="text-center md:text-left w-full md:w-auto">
+          <h1 className="text-xl font-bold text-white">Package Manager</h1>
+        </div>
 
-      <div className="text-xl font-bold text-gray-700 flex-grow text-center md:text-left">
-        Package Manager
-      </div>
+        {/* Desktop Navigation */}
 
-      {/* Desktop Navigation */}
-     
         <NavItems navItems={headerNavItems} />
+      </div>
     </header>
   );
 }

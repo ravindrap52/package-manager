@@ -24,7 +24,7 @@ export const headerNavItems = [
 export const sidebarNavItems = [
     {
         name: "Home",
-        path: "/home",
+        path: "/",
         id: 1,
     },
     {

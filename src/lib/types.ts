@@ -9,6 +9,7 @@ export type NavItemProps = {
     id: number;
   }[];
   handleOnClick?: () => void;
+  cssClass?: string;
 };
 
 export type HeaderProps = {

@@ -6,8 +6,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import NavItemsAsList from "@/components/NavItemsAsList";
 
-import { headerNavItems } from "@/lib/navItems";
-import SearchInput from "./components/SearchInput";
+import { sidebarNavItems } from "@/lib/navItems";
 
 export default function App() {
   const [toggle, setToggle] = useState(false);
@@ -24,7 +23,7 @@ export default function App() {
 
   return (
     <section
-      className="bg-gray-100 flex flex-col min-h-screen"
+      className="bg-gray-50 flex flex-col min-h-screen text-gray-800"
       data-testid="app"
     >
       {/* Header */}
@@ -34,12 +33,12 @@ export default function App() {
       {toggle ? (
         <aside
           data-testid="mobileNav"
-          className={`fixed top-0 left-0 w-64 bg-white shadow-md p-4 h-full transform transition-transform md:hidden z-50 ${
+          className={`fixed top-0 left-0 w-64 bg-teal-400 shadow-md p-4 h-full transform transition-transform md:hidden z-50 ${
             toggle ? "translate-x-0" : "-translate-x-full"
           }`}
         >
           <button
-            className="absolute top-4 right-4 text-gray-600 focus:outline-none"
+            className="absolute top-4 right-4 text-white focus:outline-none"
             onClick={() => setToggle(false)}
           >
             <svg
@@ -58,8 +57,9 @@ export default function App() {
             </svg>
           </button>
           <NavItemsAsList
-            navItems={headerNavItems}
+            navItems={sidebarNavItems}
             handleOnClick={closeHamburgerMenu}
+            cssClass="text-white"
           />
         </aside>
       ) : null}
@@ -67,9 +67,8 @@ export default function App() {
       {/* Sidebar */}
 
       <main className="flex flex-1 flex-col md:flex-row p-4" data-testid="main">
-        <aside className="w-full md:w-1/4 bg-white shadow-md p-4 mb-4 md:mb-0 md:mr-4">
-          {/* <NavItemsAsList navItems={sidebarNavItems} /> */}
-          <SearchInput />
+        <aside className="w-full hidden md:w-1/4 bg-white shadow-md p-4 mb-4 md:mb-0 md:mr-4 lg:block md:block sm:hidden">
+          <NavItemsAsList navItems={sidebarNavItems} cssClass="text-black" />
         </aside>
 
         {/* Content Area */}
