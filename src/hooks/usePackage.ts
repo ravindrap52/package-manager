@@ -1,7 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
-import { API_URL } from "@/consts";
-
 import { SearchResults } from "@/lib/interface";
 
 /**
@@ -20,10 +18,11 @@ export const fetchPackages = async (
     // if not search term then defaulting to *
     encodedSearchTerm = encodedSearchTerm ? encodedSearchTerm : "*"
 
-    // getting api key env file. This is from .env.devlopment file
+    // getting aipi, api key env file. This is from .env.devlopment file
     const apiKey = import.meta.env.VITE_API_KEY;
+    const api_url = import.meta.env.VITE_API_URL;
 
-    const url = `${API_URL}/?q=${encodedSearchTerm}&api_key=${apiKey}&page=${page}&per_page=${perPage}`;
+    const url = `${api_url}/?q=${encodedSearchTerm}&api_key=${apiKey}&page=${page}&per_page=${perPage}`;
     
     const response = await fetch(url);
 
