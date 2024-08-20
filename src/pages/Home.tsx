@@ -8,6 +8,9 @@ export default function Home() {
         default, the search will use `"*"`, and users can search for specific
         packages using the search box.
       </Typography>
+      <Typography variant="h6" gutterBottom>
+      "Click the 'Search packages' link in the header to start searching for packages."
+      </Typography>
     </Box>
   );
 }
